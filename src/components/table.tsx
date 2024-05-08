@@ -17,12 +17,38 @@ import { DialogDemo } from "./Dialog";
 
 export default function Tables() {
   const [data, setData] = useState(empData);
-  const [isOpen,setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef(null);
+
+  const handleSearch = () => {
+    const value = inputRef.current.value;
+
+    if (value!=="") {
+      const newData = data.filter((ele) => {
+        return ele.description.includes(value) && ele;
+      });
+      setData(newData);
+    } else {
+      setData(empData);
+    }
+  };
 
   return (
     <div>
-      <Button className="float-right" onClick={()=>setIsOpen(true)}>Add Product</Button>
+      <div className="flex justify-between p-2">
+        <div className="flex gap-2">
+          <Input
+            className="border border-gray-400"
+            type="email"
+            placeholder="Search Task ..."
+            ref={inputRef}
+            onChange={handleSearch}
+          />
+        </div>
+
+        <Button onClick={() => setIsOpen(true)}>Add Product</Button>
+      </div>
+
       <Table>
         <TableCaption>A list of your recent Tasks.</TableCaption>
 
@@ -53,9 +79,10 @@ export default function Tables() {
           <TableCell className="text-right">$2,500.00</TableCell>
         </TableRow>
       </TableFooter> */}
-
       </Table>
-      {isOpen && <DialogDemo isOpen={isOpen} setIsOpen={setIsOpen} setData={setData}/> }
+      {isOpen && (
+        <DialogDemo isOpen={isOpen} setIsOpen={setIsOpen} setData={setData} />
+      )}
     </div>
   );
 }

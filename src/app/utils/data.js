@@ -40,6 +40,32 @@ const empData = [
     "taskStatus": "completed",
     "payment": "$300.00",
     "description": "Doing Typescript task"
+  },
+  {
+    "empId": "emp08",
+    "taskStatus": "pending",
+    "payment": "$340.00",
+    "description": "DOing HTML"
+  },  {
+    "empId": "emp09",
+    "taskStatus": "pending",
+    "payment": "$340.00",
+    "description": "DOing HTML"
+  },  {
+    "empId": "emp10",
+    "taskStatus": "pending",
+    "payment": "$340.00",
+    "description": "DOing HTML"
+  },  {
+    "empId": "emp11",
+    "taskStatus": "pending",
+    "payment": "$340.00",
+    "description": "DOing HTML"
+  },  {
+    "empId": "emp12",
+    "taskStatus": "pending",
+    "payment": "$340.00",
+    "description": "DOing HTML"
   }
 ]
 

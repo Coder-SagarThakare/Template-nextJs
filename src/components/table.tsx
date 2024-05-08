@@ -16,14 +16,27 @@ import { DropdownMenuDemo } from "./Dropdown";
 import { DialogDemo } from "./Dialog";
 
 export default function Tables() {
-  const [data, setData] = useState(empData);
+
+  interface filterDataProps {
+    empData: Array<object>;
+    currentPage: number;
+  }
+  const [currentPage, setCurrentPage] = useState(1);
+
+  // const filterData = ( empData:Array<object>, currentPage:number ) => {
+  const filterData = ({ empData, currentPage }: filterDataProps) => {
+    return empData.slice((currentPage - 1) * 5, 5);
+  };
+
+  const [data, setData] = useState(() => filterData({empData, currentPage}));
+
   const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef(null);
 
   const handleSearch = () => {
     const value = inputRef.current.value;
 
-    if (value!=="") {
+    if (value !== "") {
       const newData = data.filter((ele) => {
         return ele.description.includes(value) && ele;
       });
@@ -50,7 +63,7 @@ export default function Tables() {
       </div>
 
       <Table>
-        <TableCaption>A list of your recent Tasks.</TableCaption>
+        {/* <TableCaption>A list of your recent Tasksss.</TableCaption> */}
 
         {/* show table header */}
         <TableHeader>

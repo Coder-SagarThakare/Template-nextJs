@@ -1,5 +1,5 @@
 import React from "react";
-import { TableHead, TableRow } from "@/(components)/ui/table";
+import { TableHead, TableRow } from "@/components/ui/table";
 
 function TableRowData() {
   return (

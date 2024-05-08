@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { CircleUser, Menu, Package2, Search } from "lucide-react";
-import { Button } from "@/(components)/ui/button";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,8 +8,8 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/(components)/ui/card";
-import { Checkbox } from "@/(components)/ui/checkbox";
+} from "@/components/ui/card";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -17,9 +17,9 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/(components)/ui/dropdown-menu";
-import { Input } from "@/(components)/ui/input";
-import { Sheet, SheetContent, SheetTrigger } from "@/(components)/ui/sheet";
+} from "@/components/ui/dropdown-menu";
+import { Input } from "@/components/ui/input";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export default function Header() {
   return (

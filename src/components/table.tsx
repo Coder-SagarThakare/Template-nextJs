@@ -6,15 +6,17 @@ import {
   TableCell,
   TableHeader,
   TableRow,
-} from "@/(components)/ui/table";
-import { data } from "../app/utils/data";
-import { Button } from "@/(components)/ui/button";
-import TableRowData from "@/(components)/TableRowData";
+} from "@/components/ui/table";
+import { empData } from "../app/utils/data";
+import { Button } from "@/components/ui/button";
+import TableRowData from "@/components/TableRowData";
 import { useRef, useState } from "react";
 import { Input } from "./ui/input";
+import { DropdownMenuDemo } from "./Dropdown";
 
 export default function Tables() {
   const [index, setIndex] = useState(-1);
+  const [data, setData] = useState(empData);
   const inputRef = useRef(null);
 
   const handleClick = (ind: number) => {
@@ -34,25 +36,15 @@ export default function Tables() {
       {/* show table body */}
       <TableBody>
         {data.map((ele, ind) => (
-          <TableRow key={ele.empId} >
+          <TableRow key={ele.empId}>
             <TableCell>{ele.empId}</TableCell>
             <TableCell className="font-medium">{ele.taskStatus}</TableCell>
             <TableCell>
-              {index === ind ? (
-                <Input className=" bg-neutral-300" type="email" defaultValue={ele.description} ref={inputRef} />
-              ) : (
-                ele.description
-              )}
+              <span>{ele.description}</span>
             </TableCell>
             <TableCell className="text-right">{ele.payment}</TableCell>
-            <TableCell className="text-right ">
-              <Button
-                className="mr-2 bg-amber-400 text-black hover:bg-amber-500"
-                onClick={() => handleClick(ind)}
-              >
-                Edit
-              </Button>
-              <Button className="bg-red-500 hover:bg-red-700 ">Delete</Button>
+            <TableCell className=" float-right ">
+              <DropdownMenuDemo  data={data} setData={setData} ind={ind}/>
             </TableCell>
           </TableRow>
         ))}

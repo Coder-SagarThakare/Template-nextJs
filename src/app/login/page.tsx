@@ -31,7 +31,6 @@ export default function LoginForm() {
                 type="email"
                 placeholder="m@example.com"
                 required
-                className="bg-neutral-300"
               />
             </div>
             <div className="grid gap-2">
@@ -48,7 +47,6 @@ export default function LoginForm() {
                 id="password"
                 type="password"
                 required
-                className="bg-neutral-300"
               />
             </div>
             <Button type="submit" className="w-full">

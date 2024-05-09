@@ -15,10 +15,11 @@ import { useRef, useState } from "react";
 interface DialogDemoProps {
   data?: Array<object>;
   setData: Function;
-  ind?: number;
+  ind?: number ;
   isOpen: boolean;
   setIsOpen: Function;
 }
+
 
 export function DialogDemo({
   data,
@@ -51,8 +52,6 @@ export function DialogDemo({
       setData((prev)=>[...prev,newObj]);
       setIsOpen(false);
     }
-
-
   };
 
   return (

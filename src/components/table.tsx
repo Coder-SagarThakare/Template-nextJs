@@ -22,34 +22,27 @@ interface filterDataProps {
 }
 
 export const filterData = (empData: Array<object>, currentPage: number) => {
-  return empData.slice((currentPage - 1) * 5, (currentPage - 1) * 5 + 5);
+  return;
 };
 
 export default function Tables() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages] = useState(Math.floor(empData.length / 5 + 1));
 
-  const [data, setData] = useState(() => filterData(empData, currentPage));
+  const [data, setData] = useState(empData);
+  const totalPages = Math.floor(data.length / 5 + 1);
 
   const [isOpen, setIsOpen] = useState(false);
-  const inputRef = useRef(null);
 
-  useEffect(() => {
-    console.log(filterData(empData, currentPage));
-
-    setData(filterData(empData, currentPage));
-  }, [currentPage]);
-
-  const handleSearch = () => {
-    const value = inputRef.current.value;
-
+  const handleSearch = (value: string) => {
     if (value !== "") {
       const newData = data.filter((ele) => {
-        return ele.description.includes(value) && ele;
+        return ele.description
+          .toLocaleLowerCase()
+          .includes(value.toLocaleLowerCase());
       });
-      setData(filterData(newData, currentPage));
+      setData(newData);
     } else {
-      setData(filterData(empData, currentPage));
+      setData(empData);
     }
   };
 
@@ -61,8 +54,7 @@ export default function Tables() {
             className="border border-gray-400"
             type="email"
             placeholder="Search Task ..."
-            ref={inputRef}
-            onChange={handleSearch}
+            onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
 
@@ -70,8 +62,6 @@ export default function Tables() {
       </div>
 
       <Table>
-        {/* <TableCaption>A list of your recent Tasksss.</TableCaption> */}
-
         {/* show table header */}
         <TableHeader>
           <TableRowData />
@@ -79,26 +69,22 @@ export default function Tables() {
 
         {/* show table body */}
         <TableBody>
-          {data.map((ele, ind) => (
-            <TableRow key={ind}>
-              <TableCell>{ele.empId}</TableCell>
-              <TableCell className="font-medium">{ele.taskStatus}</TableCell>
-              <TableCell>
-                <span>{ele.description}</span>
-              </TableCell>
-              <TableCell className="text-right">{ele.payment}</TableCell>
-              <TableCell className=" float-right ">
-                <DropdownMenuDemo data={data} setData={setData} ind={ind} />
-              </TableCell>
-            </TableRow>
-          ))}
+          {data
+            .slice((currentPage - 1) * 5, (currentPage - 1) * 5 + 5)
+            .map((ele, ind) => (
+              <TableRow key={ind}>
+                <TableCell>{ele.empId}</TableCell>
+                <TableCell className="font-medium">{ele.taskStatus}</TableCell>
+                <TableCell>
+                  <span>{ele.description}</span>
+                </TableCell>
+                <TableCell className="text-right">{ele.payment}</TableCell>
+                <TableCell className=" float-right ">
+                  <DropdownMenuDemo data={data} setData={setData} ind={ind} />
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
-        {/* <TableFooter>
-        <TableRow>
-          <TableCell colSpan={3}>Total</TableCell>
-          <TableCell className="text-right">$2,500.00</TableCell>
-        </TableRow>
-      </TableFooter> */}
       </Table>
 
       <PaginationDemo

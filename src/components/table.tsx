@@ -10,10 +10,11 @@ import {
 import { empData } from "../app/utils/data";
 import { Button } from "@/components/ui/button";
 import TableRowData from "@/components/TableRowData";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Input } from "./ui/input";
 import { DropdownMenuDemo } from "./Dropdown";
 import { DialogDemo } from "./Dialog";
+import { PaginationDemo } from "./pagination";
 
 interface filterDataProps {
   empData: Array<object>;
@@ -25,7 +26,7 @@ interface filterDataProps {
 // };
 
 export const filterData = (empData: Array<object>, currentPage: number) => {
-  return empData.slice((currentPage - 1) * 5, 5);
+  return empData.slice((currentPage - 1) * 5, (currentPage - 1) * 5 + 5);
 };
 
 export default function Tables() {
@@ -33,10 +34,19 @@ export default function Tables() {
 
   // const filterData = ( empData:Array<object>, currentPage:number ) => {
 
+  // const [data, setData] = useState(() => filterData(empData, currentPage));
   const [data, setData] = useState(() => filterData(empData, currentPage));
 
   const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    console.log(filterData(empData, currentPage));
+
+    // console.log(empData.slice((currentPage - 1) * 5, currentPage * 5 + 5));
+
+    setData(filterData(empData, currentPage));
+  }, [currentPage]);
 
   const handleSearch = () => {
     const value = inputRef.current.value;
@@ -98,6 +108,11 @@ export default function Tables() {
         </TableRow>
       </TableFooter> */}
       </Table>
+
+      <PaginationDemo
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
       {isOpen && (
         <DialogDemo isOpen={isOpen} setIsOpen={setIsOpen} setData={setData} />
       )}

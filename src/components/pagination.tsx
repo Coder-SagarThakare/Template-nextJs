@@ -1,39 +1,54 @@
 import {
-    Pagination,
-    PaginationContent,
-    PaginationEllipsis,
-    PaginationItem,
-    PaginationLink,
-    PaginationNext,
-    PaginationPrevious,
-  } from "@/components/ui/pagination"
-  
-  export function PaginationDemo() {
-    return (
-      <Pagination>
-        <PaginationContent>
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination";
+
+interface props {
+  currentPage: number;
+  setCurrentPage: Function;
+}
+export function PaginationDemo({ currentPage, setCurrentPage }: props) {
+  const handleDecreaseCurrentPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handleIncreaseCurrentPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+  return (
+    <Pagination>
+      <PaginationContent>
+        {currentPage > 1 && (
           <PaginationItem>
-            <PaginationPrevious href="#" />
+            <PaginationPrevious onClick={handleDecreaseCurrentPage} />
           </PaginationItem>
+        )}
+        {currentPage > 1 && (
           <PaginationItem>
-            <PaginationLink href="#">1</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#" isActive>
-              2
+            <PaginationLink onClick={handleDecreaseCurrentPage}>
+              {currentPage - 1}
             </PaginationLink>
           </PaginationItem>
-          <PaginationItem>
-            <PaginationLink href="#">3</PaginationLink>
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationEllipsis />
-          </PaginationItem>
-          <PaginationItem>
-            <PaginationNext href="#" />
-          </PaginationItem>
-        </PaginationContent>
-      </Pagination>
-    )
-  }
-  
+        )}
+        <PaginationItem>
+          <PaginationLink isActive>
+            {currentPage}
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationLink onClick={handleIncreaseCurrentPage}>
+            {currentPage + 1}
+          </PaginationLink>
+        </PaginationItem>
+        <PaginationItem>
+          <PaginationNext onClick={handleIncreaseCurrentPage}/>
+        </PaginationItem>
+      </PaginationContent>
+    </Pagination>
+  );
+}

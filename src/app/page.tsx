@@ -10,7 +10,6 @@ export default function Home() {
     <div className="p-5">
       <Header />
       <Tables />
-      <PaginationDemo />
 
     </div>
   );

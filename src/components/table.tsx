@@ -31,10 +31,8 @@ export const filterData = (empData: Array<object>, currentPage: number) => {
 
 export default function Tables() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages,] = useState(Math.floor(empData.length / 5 + 1))
 
-  // const filterData = ( empData:Array<object>, currentPage:number ) => {
-
-  // const [data, setData] = useState(() => filterData(empData, currentPage));
   const [data, setData] = useState(() => filterData(empData, currentPage));
 
   const [isOpen, setIsOpen] = useState(false);
@@ -42,8 +40,6 @@ export default function Tables() {
 
   useEffect(() => {
     console.log(filterData(empData, currentPage));
-
-    // console.log(empData.slice((currentPage - 1) * 5, currentPage * 5 + 5));
 
     setData(filterData(empData, currentPage));
   }, [currentPage]);
@@ -74,7 +70,7 @@ export default function Tables() {
           />
         </div>
 
-        <Button onClick={() => setIsOpen(true)}>Add Product</Button>
+        <Button onClick={() => setIsOpen(true)}>Add +</Button>
       </div>
 
       <Table>
@@ -112,6 +108,7 @@ export default function Tables() {
       <PaginationDemo
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
+        totalPages = {totalPages}
       />
       {isOpen && (
         <DialogDemo isOpen={isOpen} setIsOpen={setIsOpen} setData={setData} />

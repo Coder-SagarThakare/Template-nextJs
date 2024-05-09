@@ -11,8 +11,13 @@ import {
 interface props {
   currentPage: number;
   setCurrentPage: Function;
+  totalPages: number;
 }
-export function PaginationDemo({ currentPage, setCurrentPage }: props) {
+export function PaginationDemo({
+  currentPage,
+  setCurrentPage,
+  totalPages,
+}: props) {
   const handleDecreaseCurrentPage = () => {
     setCurrentPage(currentPage - 1);
   };
@@ -20,34 +25,37 @@ export function PaginationDemo({ currentPage, setCurrentPage }: props) {
   const handleIncreaseCurrentPage = () => {
     setCurrentPage(currentPage + 1);
   };
+
   return (
     <Pagination>
       <PaginationContent>
         {currentPage > 1 && (
-          <PaginationItem>
+          <PaginationItem className="cursor-pointer">
             <PaginationPrevious onClick={handleDecreaseCurrentPage} />
           </PaginationItem>
         )}
         {currentPage > 1 && (
-          <PaginationItem>
+          <PaginationItem className="cursor-pointer">
             <PaginationLink onClick={handleDecreaseCurrentPage}>
               {currentPage - 1}
             </PaginationLink>
           </PaginationItem>
         )}
-        <PaginationItem>
-          <PaginationLink isActive>
-            {currentPage}
-          </PaginationLink>
+        <PaginationItem className="cursor-pointer">
+          <PaginationLink isActive>{currentPage}</PaginationLink>
         </PaginationItem>
-        <PaginationItem>
-          <PaginationLink onClick={handleIncreaseCurrentPage}>
-            {currentPage + 1}
-          </PaginationLink>
-        </PaginationItem>
-        <PaginationItem>
-          <PaginationNext onClick={handleIncreaseCurrentPage}/>
-        </PaginationItem>
+        {totalPages > currentPage && (
+          <PaginationItem className="cursor-pointer">
+            <PaginationLink onClick={handleIncreaseCurrentPage}>
+              {currentPage + 1}
+            </PaginationLink>
+          </PaginationItem>
+        )}
+        {totalPages > currentPage && (
+          <PaginationItem className="cursor-pointer">
+            <PaginationNext onClick={handleIncreaseCurrentPage} />
+          </PaginationItem>
+        )}
       </PaginationContent>
     </Pagination>
   );

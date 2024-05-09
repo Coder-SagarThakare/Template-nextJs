@@ -15,20 +15,25 @@ import { Input } from "./ui/input";
 import { DropdownMenuDemo } from "./Dropdown";
 import { DialogDemo } from "./Dialog";
 
-export default function Tables() {
+interface filterDataProps {
+  empData: Array<object>;
+  currentPage: number;
+}
 
-  interface filterDataProps {
-    empData: Array<object>;
-    currentPage: number;
-  }
+// export const filterData = ({ empData, currentPage }: filterDataProps) => {
+//   return empData.slice((currentPage - 1) * 5, 5);
+// };
+
+export const filterData = (empData: Array<object>, currentPage: number) => {
+  return empData.slice((currentPage - 1) * 5, 5);
+};
+
+export default function Tables() {
   const [currentPage, setCurrentPage] = useState(1);
 
   // const filterData = ( empData:Array<object>, currentPage:number ) => {
-  const filterData = ({ empData, currentPage }: filterDataProps) => {
-    return empData.slice((currentPage - 1) * 5, 5);
-  };
 
-  const [data, setData] = useState(() => filterData({empData, currentPage}));
+  const [data, setData] = useState(() => filterData(empData, currentPage));
 
   const [isOpen, setIsOpen] = useState(false);
   const inputRef = useRef(null);
@@ -40,9 +45,9 @@ export default function Tables() {
       const newData = data.filter((ele) => {
         return ele.description.includes(value) && ele;
       });
-      setData(newData);
+      setData(filterData(newData, currentPage));
     } else {
-      setData(empData);
+      setData(filterData(empData, currentPage));
     }
   };
 

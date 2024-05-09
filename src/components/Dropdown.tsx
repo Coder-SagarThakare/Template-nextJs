@@ -48,6 +48,8 @@ export function DropdownMenuDemo({ data, setData, ind }: DropdownMenuProps) {
 
   const handleDeleteRow = () => {
     data.splice(ind, 1);
+    console.log(data);
+    
     // set updated array after splice data
     setData([...data]);
   };

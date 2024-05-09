@@ -21,17 +21,13 @@ interface filterDataProps {
   currentPage: number;
 }
 
-// export const filterData = ({ empData, currentPage }: filterDataProps) => {
-//   return empData.slice((currentPage - 1) * 5, 5);
-// };
-
 export const filterData = (empData: Array<object>, currentPage: number) => {
   return empData.slice((currentPage - 1) * 5, (currentPage - 1) * 5 + 5);
 };
 
 export default function Tables() {
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages,] = useState(Math.floor(empData.length / 5 + 1))
+  const [totalPages] = useState(Math.floor(empData.length / 5 + 1));
 
   const [data, setData] = useState(() => filterData(empData, currentPage));
 
@@ -108,7 +104,7 @@ export default function Tables() {
       <PaginationDemo
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
-        totalPages = {totalPages}
+        totalPages={totalPages}
       />
       {isOpen && (
         <DialogDemo isOpen={isOpen} setIsOpen={setIsOpen} setData={setData} />

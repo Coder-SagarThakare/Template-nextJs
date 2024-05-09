@@ -48,7 +48,6 @@ export function DialogDemo({
       return;
     }
     if(newObj.empId!== "" && newObj.description!=="" && newObj.payment!==""&& newObj.taskStatus!==""){
-      // data.push(newObj);
       setData((prev)=>[...prev,newObj]);
       setIsOpen(false);
     }

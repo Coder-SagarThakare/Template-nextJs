@@ -30,7 +30,6 @@ export default function SignupForm() {
                   id="first-name"
                   placeholder="Max"
                   required
-                  className="bg-neutral-300"
                 />
               </div>
               <div className="grid gap-2">
@@ -39,7 +38,6 @@ export default function SignupForm() {
                   id="last-name"
                   placeholder="Robinson"
                   required
-                  className="bg-neutral-300"
                 />
               </div>
             </div>
@@ -50,12 +48,11 @@ export default function SignupForm() {
                 type="email"
                 placeholder="m@example.com"
                 required
-                className="bg-neutral-300"
               />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Input id="password" type="password" className="bg-neutral-300" />
+              <Input id="password" type="password"  />
             </div>
             <Button type="submit" className="w-full">
               Create an account
@@ -66,8 +63,8 @@ export default function SignupForm() {
           </div>
           <div className="mt-4 text-center text-sm">
             Already have an account?{" "}
-            <Link href="#" className="underline">
-              Sign in
+            <Link href="/login" className="underline">
+              Login
             </Link>
           </div>
         </CardContent>

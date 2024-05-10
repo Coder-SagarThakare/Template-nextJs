@@ -2,7 +2,6 @@
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHeader,
   TableRow,
@@ -15,21 +14,14 @@ import { Input } from "./ui/input";
 import { DropdownMenuDemo } from "./Dropdown";
 import { DialogDemo } from "./Dialog";
 import { PaginationDemo } from "./pagination";
-
-interface filterDataProps {
-  empData: Array<object>;
-  currentPage: number;
-}
-
-export const filterData = (empData: Array<object>, currentPage: number) => {
-  return;
-};
+import { Search } from "lucide-react";
 
 export default function Tables() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const [data, setData] = useState(empData);
   const totalPages = Math.floor(data.length / 5 + 1);
+  const startAt = (currentPage - 1) * 5;
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -48,12 +40,13 @@ export default function Tables() {
 
   return (
     <div>
-      <div className="flex justify-between p-2">
-        <div className="flex gap-2">
+      <div className="flex justify-between p-2 ">
+        <div className="relative flex-1 md:grow-0">
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
           <Input
-            className="border border-gray-400"
-            type="email"
-            placeholder="Search Task ..."
+            type="search"
+            placeholder="Search..."
+            className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
             onChange={(e) => handleSearch(e.target.value)}
           />
         </div>
@@ -69,21 +62,19 @@ export default function Tables() {
 
         {/* show table body */}
         <TableBody>
-          {data
-            .slice((currentPage - 1) * 5, (currentPage - 1) * 5 + 5)
-            .map((ele, ind) => (
-              <TableRow key={ind}>
-                <TableCell>{ele.empId}</TableCell>
-                <TableCell className="font-medium">{ele.taskStatus}</TableCell>
-                <TableCell>
-                  <span>{ele.description}</span>
-                </TableCell>
-                <TableCell className="text-right">{ele.payment}</TableCell>
-                <TableCell className=" float-right ">
-                  <DropdownMenuDemo data={data} setData={setData} ind={ind} />
-                </TableCell>
-              </TableRow>
-            ))}
+          {data.slice(startAt, startAt + 5).map((ele, ind) => (
+            <TableRow key={ind}>
+              <TableCell>{ele.empId}</TableCell>
+              <TableCell className="font-medium">{ele.taskStatus}</TableCell>
+              <TableCell>
+                <span>{ele.description}</span>
+              </TableCell>
+              <TableCell className="text-right">{ele.payment}</TableCell>
+              <TableCell className=" float-right ">
+                <DropdownMenuDemo data={data} setData={setData} ind={ind} />
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
 
@@ -93,7 +84,7 @@ export default function Tables() {
         totalPages={totalPages}
       />
       {isOpen && (
-        <DialogDemo isOpen={isOpen} setIsOpen={setIsOpen} setData={setData} />
+        <DialogDemo isOpen={isOpen} setIsOpen={setIsOpen} setData={setData} title={"Add"}/>
       )}
     </div>
   );

@@ -13,6 +13,7 @@ import {
   LogOut,
   Mail,
   MessageSquare,
+  MoreHorizontal,
   Plus,
   PlusCircle,
   Settings,
@@ -36,6 +37,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { DialogDemo } from "./Dialog";
 import { useState } from "react";
+import { Button } from "./ui/button";
 
 interface DropdownMenuProps {
   setData: Function;
@@ -48,7 +50,6 @@ export function DropdownMenuDemo({ data, setData, ind }: DropdownMenuProps) {
 
   const handleDeleteRow = () => {
     data.splice(ind, 1);
-    console.log(data);
 
     // set updated array after splice data
     setData([...data]);
@@ -57,7 +58,10 @@ export function DropdownMenuDemo({ data, setData, ind }: DropdownMenuProps) {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <DotsHorizontalIcon />
+        <Button aria-haspopup="true" size="icon" variant="ghost">
+          <MoreHorizontal className="h-4 w-4" />
+          <span className="sr-only">Toggle menu</span>
+        </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
         <DropdownMenuLabel>Operations</DropdownMenuLabel>
@@ -70,6 +74,7 @@ export function DropdownMenuDemo({ data, setData, ind }: DropdownMenuProps) {
             ind={ind}
             isOpen={isOpen}
             setIsOpen={setIsOpen}
+            title={"Update"}
           />
 
           {/* button to delete data */}

@@ -31,7 +31,6 @@ function ForgotPassword() {
                 type="email"
                 placeholder="m@example.com"
                 required
-                className="bg-neutral-300"
               />
             </div>
 
@@ -43,9 +42,9 @@ function ForgotPassword() {
             </Button>
           </div>
           <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
-            <Link href="#" className="underline">
-              Sign up
+            Go to {" "}
+            <Link href="/signup" className="underline">
+              Login
             </Link>
           </div>
         </CardContent>

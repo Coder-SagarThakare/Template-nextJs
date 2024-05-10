@@ -18,6 +18,7 @@ interface DialogDemoProps {
   ind?: number ;
   isOpen: boolean;
   setIsOpen: Function;
+  title : String
 }
 
 
@@ -27,6 +28,7 @@ export function DialogDemo({
   ind,
   isOpen,
   setIsOpen,
+  title
 }: DialogDemoProps) {
   const descriptionRef = useRef<HTMLInputElement>(null);
   const taskStatusRef = useRef<HTMLInputElement>(null);
@@ -58,7 +60,7 @@ export function DialogDemo({
     <Dialog open={isOpen} onOpenChange={() => setIsOpen(false)}>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
-          <DialogTitle>Update</DialogTitle>
+          <DialogTitle>{title}</DialogTitle>
           <DialogDescription>
             Make changes to your Task here. Click save when youre done.
           </DialogDescription>

@@ -9,7 +9,7 @@ import {
 import { empData } from "../app/utils/data";
 import { Button } from "@/components/ui/button";
 import TableRowData from "@/components/TableRowData";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { Input } from "./ui/input";
 import { DropdownMenuDemo } from "./Dropdown";
 import { DialogDemo } from "./Dialog";

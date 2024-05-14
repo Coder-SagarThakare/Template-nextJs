@@ -42,8 +42,6 @@ export function DropdownMenuDemo({ data, setData, ind }: DropdownMenuProps) {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>Operations</DropdownMenuLabel>
-        <DropdownMenuSeparator />
         <DropdownMenuGroup>
           {/* dialog box for edit data */}
           <DialogDemo
@@ -68,7 +66,6 @@ export function DropdownMenuDemo({ data, setData, ind }: DropdownMenuProps) {
             <span>Delete</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
-        <DropdownMenuSeparator />
       </DropdownMenuContent>
     </DropdownMenu>
   );

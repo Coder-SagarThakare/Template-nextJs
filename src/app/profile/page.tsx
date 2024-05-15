@@ -27,8 +27,10 @@ function Profile() {
     lastName: "Thakare",
     phone: "+91 9876543210",
     gender: "Male",
-    email : "Sagar@gmail.com"
+    email: "Sagar@gmail.com",
   });
+
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="flex justify-center mt-16">
@@ -61,25 +63,57 @@ function Profile() {
             <CardHeader>
               <div className="flex justify-between">
                 <CardTitle>Personal Information</CardTitle>
-                <DialogForm user={user} />
+                <DialogForm user={user} setUser={setUser} open={open} setOpen={setOpen}/>
               </div>
             </CardHeader>
             <CardContent>
-              <div>
+              <div className="flex  p-2  py-4">
                 <div className="grid w-full items-center gap-4">
                   <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="name">Name</Label>
+                    <Label htmlFor="name">Firstname</Label>
                     <span>{user.firstName}</span>
                   </div>
                 </div>
+
+                <div className="grid w-full items-center gap-4">
+                  <div className="flex flex-col space-y-1.5">
+                    <Label htmlFor="name">Lastname</Label>
+                    <span>{user.lastName}</span>
+                  </div>
+                </div>
               </div>
+
+              <div className="flex p-2 py-4">
+                <div className="grid w-full items-center gap-4">
+                  <div className="flex flex-col space-y-1.5">
+                    <Label htmlFor="name">Phone</Label>
+                    <span>{user.phone}</span>
+                  </div>
+                </div>
+
+                <div className="grid w-full items-center gap-4 ">
+                  <div className="flex flex-col space-y-1.5">
+                    <Label htmlFor="name">Email</Label>
+                    <span>{user.email}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex p-2 py-4">
+                <div className="grid w-full items-center gap-4">
+                  <div className="flex flex-col space-y-1.5">
+                    <Label htmlFor="name">Gender</Label>
+                    <span>{user.gender}</span>
+                  </div>
+                </div>
+              </div>
+
+
             </CardContent>
           </Card>
+
         </CardContent>
-        <CardFooter className="flex justify-between">
-          <Button variant="outline">Cancel</Button>
-          <Button>Deploy</Button>
-        </CardFooter>
+
       </Card>
     </div>
   );

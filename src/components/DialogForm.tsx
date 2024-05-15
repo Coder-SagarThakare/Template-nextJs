@@ -23,7 +23,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Label } from "@/components/ui/label";
 
 const FormSchema = z.object({
   firstName: z.string().min(2, {
@@ -42,9 +41,7 @@ const FormSchema = z.object({
     message: "gender must be at least 2 characters.",
   }),
 });
-export function DialogForm({ user }) {
-  console.log(user.firstName);
-
+export function DialogForm({ user, setUser, open, setOpen }) {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -56,22 +53,14 @@ export function DialogForm({ user }) {
     },
   });
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-
-    console.log(data);
+    setUser(data);
+    setOpen(false);
   }
 
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Button variant="outline">Edit Profile</Button>
+    <Dialog open={open}>
+      <DialogTrigger asChild >
+        <Button variant="outline" onClick={()=>setOpen(true)}>Edit Profile</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
@@ -162,28 +151,4 @@ export function DialogForm({ user }) {
       </DialogContent>
     </Dialog>
   );
-}
-
-{
-  /* <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-        <FormField
-          control={form.control}
-          name="username"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Username</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit">Submit</Button>
-      </form>
-    </Form> */
 }

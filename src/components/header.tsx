@@ -7,27 +7,18 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ModeToggle } from "./ToggleMode";
 
-import React, { useState } from "react";
+import React from "react";
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
-
-import { DropdownMenuCheckboxItem } from "@/components/ui/dropdown-menu";
 
 type Checked = DropdownMenuCheckboxItemProps["checked"];
 
 export default function Header() {
-  const [showStatusBar, setShowStatusBar] = useState<Checked>(true);
-  const [showActivityBar, setShowActivityBar] = useState<Checked>(false);
-  const [showPanel, setShowPanel] = useState<Checked>(false);
-  const [selectedTheme, setSelectedTheme] = useState();
-
-  const colors = ["Rose", "Blue", "Green", "Orange"];
 
   return (
     <header className="sticky top-0 flex h-16 items-center gap-4 border-b bg-background px-4 md:px-6 flex justify-between">
@@ -37,9 +28,8 @@ export default function Header() {
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
           <Package2 className="h-6 w-6" />
-          <Link href={"/"}>Logo</Link>
+          <span>Logo</span>
         </Link>
-
       </nav>
       <Sheet>
         <SheetTrigger asChild>

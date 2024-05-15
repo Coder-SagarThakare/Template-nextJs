@@ -27,6 +27,7 @@ export default function ThemePicker() {
     "rose",
   ]);
 
+
   const handleTheme = (t: string) => {
     let res = resolvedTheme || "";
     if ((darkColors.includes(t) || darkColors.includes(res)) && t !== "light") {

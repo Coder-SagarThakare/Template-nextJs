@@ -37,51 +37,9 @@ export default function Header() {
           className="flex items-center gap-2 text-lg font-semibold md:text-base"
         >
           <Package2 className="h-6 w-6" />
-          <span>Logo</span>
+          <Link href={"/"}>Logo</Link>
         </Link>
 
-        {/* Dropdown */}
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost">Themes</Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
-            {/* <DropdownMenuLabel>Appearance</DropdownMenuLabel> */}
-            {/* <DropdownMenuSeparator /> */}
-
-            {/*
-             <DropdownMenuCheckboxItem
-              checked={showStatusBar}
-              onCheckedChange={setShowStatusBar}
-            >
-              Status Bar
-            </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={showActivityBar}
-              onCheckedChange={setShowActivityBar}
-              disabled
-            >
-              Activity Bar
-            </DropdownMenuCheckboxItem>
-            <DropdownMenuCheckboxItem
-              checked={showPanel}
-              onCheckedChange={setShowPanel}
-            >
-              Panel
-            </DropdownMenuCheckboxItem>
-             */}
-
-            {colors.map((ele, ind) => (
-              <DropdownMenuCheckboxItem
-                checked={showStatusBar}
-                onCheckedChange={setShowStatusBar}
-                key={ind}
-              >
-                {ele}
-              </DropdownMenuCheckboxItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
       </nav>
       <Sheet>
         <SheetTrigger asChild>

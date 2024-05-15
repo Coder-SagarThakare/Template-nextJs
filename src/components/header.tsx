@@ -14,7 +14,7 @@ import {
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { ModeToggle } from "./ToggleMode";
 
-import * as React from "react";
+import React, { useState } from "react";
 import { DropdownMenuCheckboxItemProps } from "@radix-ui/react-dropdown-menu";
 
 import { DropdownMenuCheckboxItem } from "@/components/ui/dropdown-menu";
@@ -22,10 +22,10 @@ import { DropdownMenuCheckboxItem } from "@/components/ui/dropdown-menu";
 type Checked = DropdownMenuCheckboxItemProps["checked"];
 
 export default function Header() {
-  const [showStatusBar, setShowStatusBar] = React.useState<Checked>(true);
-  const [showActivityBar, setShowActivityBar] = React.useState<Checked>(false);
-  const [showPanel, setShowPanel] = React.useState<Checked>(false);
-  // const []
+  const [showStatusBar, setShowStatusBar] = useState<Checked>(true);
+  const [showActivityBar, setShowActivityBar] = useState<Checked>(false);
+  const [showPanel, setShowPanel] = useState<Checked>(false);
+  const [selectedTheme, setSelectedTheme] = useState();
 
   const colors = ["Rose", "Blue", "Green", "Orange"];
 
@@ -46,8 +46,9 @@ export default function Header() {
             <Button variant="ghost">Themes</Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-56">
-            <DropdownMenuLabel>Appearance</DropdownMenuLabel>
-            <DropdownMenuSeparator />
+            {/* <DropdownMenuLabel>Appearance</DropdownMenuLabel> */}
+            {/* <DropdownMenuSeparator /> */}
+
             {/*
              <DropdownMenuCheckboxItem
               checked={showStatusBar}
@@ -139,10 +140,9 @@ export default function Header() {
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>My Account</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Link href={'/profile'}>Settings</Link>
-            </DropdownMenuItem>
-            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <Link href={"/setting"}>
+              <DropdownMenuItem>setting</DropdownMenuItem>
+            </Link>
             <DropdownMenuItem>Themes</DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Logout</DropdownMenuItem>

@@ -1,19 +1,9 @@
 "use client";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
 
 import Image from "next/image";
-import { Form } from "@/components/ui/form";
 import { DialogForm } from "@/components/DialogForm";
 
 function Profile() {
@@ -33,13 +23,13 @@ function Profile() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex justify-center mt-16">
-      <Card className="w-3/4">
+    <div className="flex justify-center mt-16 ">
+      <Card className="w-full ">
         <CardHeader>
           <CardTitle>Profile</CardTitle>
         </CardHeader>
         <CardContent>
-          <Card className="border flex p-5 rounded gap-5">
+          <Card className="border flex p-5 rounded gap-5 m-2">
             <div className="rounded  overflow-hidden h-24 w-24 ">
               <Image
                 src={imgAddr}
@@ -52,18 +42,26 @@ function Profile() {
 
             <div className=" h-full flex flex-col ">
               <span>
-                <b>Sagar Thakare</b>
+                <b>
+                  {" "}
+                  {user.firstName} {user.lastName}
+                </b>
               </span>
               <span>Jr. Software Engineer</span>
               <span>{user.phone}</span>
             </div>
           </Card>
 
-          <Card>
+          <Card className="m-2">
             <CardHeader>
               <div className="flex justify-between">
                 <CardTitle>Personal Information</CardTitle>
-                <DialogForm user={user} setUser={setUser} open={open} setOpen={setOpen}/>
+                <DialogForm
+                  user={user}
+                  setUser={setUser}
+                  open={open}
+                  setOpen={setOpen}
+                />
               </div>
             </CardHeader>
             <CardContent>
@@ -107,13 +105,9 @@ function Profile() {
                   </div>
                 </div>
               </div>
-
-
             </CardContent>
           </Card>
-
         </CardContent>
-
       </Card>
     </div>
   );

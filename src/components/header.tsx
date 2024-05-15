@@ -138,9 +138,7 @@ export default function Header() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <Link href={"/setting"}>
+            <Link href={"/setting/profile"}>
               <DropdownMenuItem>setting</DropdownMenuItem>
             </Link>
             <DropdownMenuItem>Themes</DropdownMenuItem>

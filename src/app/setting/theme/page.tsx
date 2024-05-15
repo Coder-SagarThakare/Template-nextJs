@@ -6,11 +6,10 @@ import { Card } from "@/components/ui/card";
 
 export default function ThemePicker() {
   let colors = [
-    { name: "orange", color: "#ea580c" },
-    { name: "blue", color: "#3b82f6" },
-    { name: "green", color: "#22c55e" },
-    { name: "rose", color: "#e11d48" },
-    { name: "light", color: "#525252" },
+      { name: "blue", color: "#3b82f6" },
+      { name: "rose", color: "#e11d48" },
+      { name: "green", color: "#22c55e" },
+      { name: "orange", color: "#ea580c" },
   ];
 
   const { setTheme, themes, resolvedTheme } = useTheme();
@@ -19,7 +18,6 @@ export default function ThemePicker() {
     "darkBlue",
     "darkRose",
     "darkGreen",
-    "dark",
   ]);
 
   const [lightColors, setLightColors] = useState([
@@ -27,7 +25,6 @@ export default function ThemePicker() {
     "blue",
     "green",
     "rose",
-    "light",
   ]);
 
   const handleTheme = (t: string) => {
@@ -41,9 +38,7 @@ export default function ThemePicker() {
       if (t === "rose" || resolvedTheme === "rose") setTheme("darkRose");
       if (t === "green" || resolvedTheme === "green") setTheme("darkGreen");
     } else if (lightColors.includes(t)) {
-      console.log(t);
       if (resolvedTheme === "dark") setTheme(t);
-      console.log("this is light", t, resolvedTheme);
       if (t === "orange" || resolvedTheme === "darkOrange") setTheme("orange");
       if (t === "blue" || resolvedTheme === "darkBlue") setTheme("blue");
       if (t === "rose" || resolvedTheme === "darkRose") setTheme("rose");
@@ -52,20 +47,25 @@ export default function ThemePicker() {
   };
 
   return (
-    <Card>
-      {colors.map((item: any) => {
-        return (
-          <Button
-            key={item.name}
-            variant="outline"
-            onClick={() => handleTheme(item.name)}
-            className="m-2  rounded-full"
-            style={{ backgroundColor: item.color }}
-          >
-            {/* {item.name} */}{"    "}
-          </Button>
-        );
-      })}
-    </Card>
+    <>
+      <Card>
+        {colors.map((item: any) => {
+          return (
+            <Button
+              key={item.name}
+              variant="outline"
+              onClick={() => handleTheme(item.name)}
+              className="m-2  rounded-full"
+              style={{ backgroundColor: item.color }}
+            >
+              {/* {item.name} */}
+              {"    "}
+            </Button>
+          );
+        })}
+
+      </Card>
+        <Button> Demo button </Button>
+    </>
   );
 }

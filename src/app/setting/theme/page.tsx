@@ -43,6 +43,7 @@ export default function ThemePicker() {
   ]);
 
   const handleTheme = (t: string) => {
+    console.log("resolvedTheme", resolvedTheme);
     let res = resolvedTheme || "";
     if ((darkColors.includes(t) || darkColors.includes(res)) && t !== "light") {
       if (resolvedTheme === "light") {
@@ -63,22 +64,22 @@ export default function ThemePicker() {
 
   return (
     <>
-
-      <Select onValueChange={(value) => setTheme(value)}>
+      <Select onValueChange={(value) => handleTheme(value)}>
         <SelectTrigger className="w-[180px]">
           <SelectValue placeholder="Brand Color" />
         </SelectTrigger>
         <SelectContent>
           <SelectGroup>
             {colors.map((ele: any, index: number) => (
-              <SelectItem key={index} value={ele.name}>
-                {ele.name}
-              </SelectItem>
+              <div className="flex gap-2 items-center" key={index}>
+
+                <SelectItem value={ele.name}>{ele.name}</SelectItem>
+                <div className="rounded-full p-2" style={{ backgroundColor: `${ele.color}` }}></div>
+              </div>
             ))}
-          </SelectGroup>
+          </SelectGroup>  
         </SelectContent>
       </Select>
-
     </>
   );
 }

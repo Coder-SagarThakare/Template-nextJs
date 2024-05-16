@@ -7,7 +7,7 @@ import Header from "./header"
 
 export function ThemeProvider({ children, ...props }: ThemeProviderProps) {
   return <>
-  <Header />
+  {/* <Header /> */}
   <NextThemesProvider {...props}>{children}</NextThemesProvider>
   </>
 }

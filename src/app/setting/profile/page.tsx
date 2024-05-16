@@ -23,7 +23,7 @@ function Profile() {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex justify-center mt-16 ">
+    <div className="flex justify-center ">
       <Card className="w-full ">
         <CardHeader>
           <CardTitle>Profile</CardTitle>

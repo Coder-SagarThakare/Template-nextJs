@@ -10,8 +10,8 @@ export default function RootLayout({
   const pathname = usePathname();
 
   return (
-    <div className="flex min-h-screen w-full flex-col">
-      <div className="mx-auto grid w-full max-w-6xl gap-2">
+    <div className="flex min-h-screen w-full flex-col ">
+      <div className="mx-auto grid w-full max-w-6xl gap-2 mb-4">
         <h1 className="text-3xl font-semibold">Settings</h1>
       </div>
       <div className="mx-auto grid w-full max-w-6xl items-start gap-6 md:grid-cols-[180px_1fr] lg:grid-cols-[250px_1fr]">
@@ -19,7 +19,7 @@ export default function RootLayout({
           className="grid gap-4 text-sm text-muted-foreground"
           x-chunk="dashboard-04-chunk-0"
         >
-          <Link 
+          <Link
             href="/setting/profile"
             className={`${
               pathname.includes("profile") ? "font-semibold text-primary" : ""

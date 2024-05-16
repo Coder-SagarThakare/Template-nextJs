@@ -4,20 +4,34 @@ import { useState } from "react";
 import { useTheme } from "next-themes";
 import { Card } from "@/components/ui/card";
 
+import React from "react";
+
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+
 export default function ThemePicker() {
   let colors = [
-      { name: "blue", color: "#3b82f6" },
-      { name: "rose", color: "#e11d48" },
-      { name: "green", color: "#22c55e" },
-      { name: "orange", color: "#ea580c" },
+    { name: "orange", color: "#ea580c" },
+    { name: "blue", color: "#3b82f6" },
+    { name: "green", color: "#22c55e" },
+    { name: "rose", color: "#e11d48" },
+    { name: "light", color: "#525252" },
   ];
 
-  const { setTheme, themes, resolvedTheme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
   const [darkColors, setDarkColors] = useState([
     "darkOrange",
     "darkBlue",
     "darkRose",
     "darkGreen",
+    "dark",
   ]);
 
   const [lightColors, setLightColors] = useState([
@@ -25,8 +39,8 @@ export default function ThemePicker() {
     "blue",
     "green",
     "rose",
+    "light",
   ]);
-
 
   const handleTheme = (t: string) => {
     let res = resolvedTheme || "";
@@ -49,24 +63,22 @@ export default function ThemePicker() {
 
   return (
     <>
-      <Card>
-        {colors.map((item: any) => {
-          return (
-            <Button
-              key={item.name}
-              variant="outline"
-              onClick={() => handleTheme(item.name)}
-              className="m-2  rounded-full"
-              style={{ backgroundColor: item.color }}
-            >
-              {/* {item.name} */}
-              {"    "}
-            </Button>
-          );
-        })}
 
-      </Card>
-        <Button> Demo button </Button>
+      <Select onValueChange={(value) => setTheme(value)}>
+        <SelectTrigger className="w-[180px]">
+          <SelectValue placeholder="Brand Color" />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            {colors.map((ele: any, index: number) => (
+              <SelectItem key={index} value={ele.name}>
+                {ele.name}
+              </SelectItem>
+            ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
+
     </>
   );
 }
